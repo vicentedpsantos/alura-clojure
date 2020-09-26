@@ -35,3 +35,48 @@
 (defn say-my-name [name] (println name))
 (say-my-name "Vicente")
 
+;; When using let to define symbols, the symbols are defined only
+;; within the clojure where let was called.
+;; If this had been defined using `def`, the symbol would have become
+;; global and caused unwanted effects.
+(defn discounted-amount
+  "Returns the amount with a discounted 10%"
+  [gross-amount]
+  (let [discount 0.10]
+    (* gross-amount (- 1 discount))))
+
+;; shows class of variable
+(println (class 90.0))
+
+;; The discount symbol here is defined as 90N, which is of class BigInt.
+;; Because let takes in a Vector as a parameter, we can define multiple symbols inside.
+;; In this case we defining both discount-rate and discount inside the clojure of let.
+;; Both these symbols are later used to calculate the discounted amount
+(defn discounted-amount
+  "Returns the amount with a discounted 10%"
+  [gross-amount]
+  (let [discount-rate (/ 10 100)
+        discount      (* discount-rate gross-amount)]
+    (- gross-amount discount)))
+
+(println (discounted-amount 120))
+
+;; IF statements
+(defn discounted-amount-conditioned
+  "Returns amount with discount if meets criteria"
+  [amount]
+  (let [minimum-amount 100
+        is-greater (> amount minimum-amount)
+        discount (/ 10 100)
+        amount-discounted (* amount discount)]
+    (if is-greater
+      (- amount amount-discounted)
+      amount)))
+
+(println (discounted-amount-conditioned 10))
+(println (discounted-amount-conditioned 120))
+
+;; Null and false values are falsy in clojure
+;; The closures below returns false
+(if nil "verdadeiro" "falso")
+(if nil "verdadeiro" "falso")
