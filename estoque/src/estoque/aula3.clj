@@ -17,8 +17,7 @@
 
 (defn greater-than-1000?
   [gross-amount]
-  (if (> gross-amount 1000)
-    false))
+  (> gross-amount 1000))
 
 (println (discounted-amount greater-than-100? 1000))
 
