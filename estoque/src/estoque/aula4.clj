@@ -72,16 +72,3 @@
 
 ;; We can also pass an initial value to the reduce function
 (reduce my-sum 10 prices)
-
-
-
-
-
-
-
-
-
-
-
-
-
